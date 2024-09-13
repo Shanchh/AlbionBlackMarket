@@ -1,15 +1,24 @@
 from PIL import Image
 import pytesseract
+import os
 
-# 載入圖片
-image_path = 'screenshot.png'
-image = Image.open(image_path)
+def loading_source():
 
-# 保存或直接處理
-image.save('processed_image.png')
+    folder_path = 'source/'
+    files = os.listdir(folder_path)
 
-# 使用 Tesseract 提取圖片中的文字
-text = pytesseract.image_to_string(image, lang='eng')
+    for result in files:
+        read_pic(folder_path, result)
 
-print("提取的文字：")   
-print(text)
+def read_pic(folder_path, name):
+
+    # 載入圖片
+    image_path = str(folder_path) + str(name)
+    image = Image.open(image_path)
+
+    # 使用 Tesseract 提取圖片中的文字
+    text = pytesseract.image_to_string(image, lang='eng')
+
+    file_n, file_e = os.path.splitext(name)
+
+    print(f"{file_n}: {text}")

@@ -84,6 +84,9 @@ notebook.pack(expand=True, fill="both")
 # 啟動前執行
 on_startup()
 
+# 設定視窗圖示
+root.iconbitmap("abm.ico")
+
 # 開始主循環
 root.mainloop()
 

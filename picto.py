@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image, ImageEnhance
 import pytesseract
 import os
 
@@ -37,7 +37,7 @@ def tidy_data(export):
 
     # 分割階級與物品名稱
     export[0][1] = sname[1]
-    insert_data = ('2_Tier', sname[0])
+    insert_data = ['2_Tier', sname[0]]
     export.insert(1,insert_data)
 
     # 附魔文字取最後一個字
@@ -69,6 +69,7 @@ def AP_trans(value):
     elif value[-1] == 'k':
         return int(value[:-1]) * 1000
     else:
+        value = value.replace(",","")
         return int(value) 
 
 # loading_source()

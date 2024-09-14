@@ -5,12 +5,22 @@ import os
 # 獲得道具名稱圖片
 def get_ss():   
 
+    # 80% 介面
+    # Value = [
+    #     # [內容名稱],[left], [top], [width], [height]
+    #     ["1_ItemName", 723, 396, 483, 50],
+    #     ["3_Enchantment", 814, 525, 132, 20],
+    #     ["4_SellOrderNow", 1356, 485, 110, 32],
+    #     ["5_AveragePrice", 1878, 948, 80, 30]
+    # ]
+
+    # 100% 介面
     Value = [
         # [內容名稱],[left], [top], [width], [height]
-        ["1_ItemName", 723, 396, 483, 50],
-        ["3_Enchantment", 814, 525, 132, 20],
-        ["4_SellOrderNow", 1356, 485, 110, 32],
-        ["5_AveragePrice", 1878, 948, 80, 30]
+        ["1_ItemName", 574, 315, 634, 60],
+        ["3_Enchantment", 702, 478, 160, 23],
+        ["4_SellOrderNow", 1380, 435, 126, 28],
+        ["5_AveragePrice", 2022, 999, 108, 40]
     ]
 
     for result in Value:

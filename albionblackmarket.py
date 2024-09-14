@@ -1,5 +1,6 @@
 from mysql.connector import Error
 import tkinter as tk
+from tkinter import ttk
 from tkinter import messagebox
 from insert_data import insert_data
 from config import connection
@@ -49,11 +50,36 @@ def start_listener_thread():
 
 # 創建主畫面
 root = tk.Tk()
-root.title("主畫面")
-root.geometry("300x200")
+root.title("AlbionBlackMarket God")
+root.geometry("1280x720")
 
-button = tk.Button(root, text="輸入資料", command = start_listener_thread)
+notebook = ttk.Notebook(root)
+
+# --------------------------------------------------------------------------#
+# 創建頁面1
+frame1 = tk.Frame(notebook, bg="lightblue")
+notebook.add(frame1, text="黑市總覽")
+
+# 頁面1的內容
+label1 = tk.Label(frame1, text="這是頁面 1 的內容", bg="lightblue")
+label1.pack(pady=20)
+# --------------------------------------------------------------------------#
+
+# --------------------------------------------------------------------------#
+# 創建頁面12
+frame2 = tk.Frame(notebook, bg="lightgreen")
+notebook.add(frame2, text="資料新增")
+
+# 頁面2的內容
+label2 = tk.Label(frame2, text="這是頁面 2 的內容", bg="lightgreen")
+label2.pack(pady=20)
+
+button = tk.Button(frame2, text="輸入資料", command = start_listener_thread)
 button.pack(pady=50)
+# --------------------------------------------------------------------------#
+
+# 顯示 Notebook (分頁)
+notebook.pack(expand=True, fill="both")
 
 # 啟動前執行
 on_startup()

@@ -48,4 +48,7 @@ def random_dealy():
     random_number = random.uniform(0.001, 0.7)
     return random_number
 
+def check_resource():
+    # 類別選項、類別半成品、布料Cloth、皮革Leather、鐵條MetalBar、木條Planks
+    check_point = [718, 340], [714, 1241], [951, 975], [951, 1107], [915,1153], [915, 1289]
 # check_script()

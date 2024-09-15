@@ -26,12 +26,15 @@ def on_press(key):
             value = insert_data()
             for val in value:
                 tree_scroll(val)
+            print(value)
+            
         if key.char == 'e':
             value = check_script()
             for i in value:
                 for val in i:
                     tree_scroll(val)
-        print(value)
+            print(value)
+
     except AttributeError:
         pass
     except TypeError as e:
@@ -70,6 +73,9 @@ def tree_scroll(val):
     # 自動滾動到最底部
     scroll_to_bottom()
 
+def resource_button_click():
+    pass
+
 # 創建主畫面
 root = tk.Tk()
 root.title("AlbionBlackMarket God")
@@ -99,7 +105,7 @@ button = tk.Button(frame2, text="開啟偵測", command = start_listener_thread)
 button.place(x=5, y=5)
 
 label2 = tk.Label(frame2, text="尚未開始偵測", bg="lightblue")
-label2.place(x=65, y=7)
+label2.place(x=68, y=7)
 
 # 顯示 Treeview 
 tree_insert_price = ttk.Treeview(frame2, columns=("Date", "Time", "Item", "Tier", "Enchantment", "SellOrder", "AveragePrice"), show="headings")
@@ -111,14 +117,35 @@ for tree_for in tree_ip_value:
     tree_insert_price.heading(tree_for[0], text=tree_for[0])
     tree_insert_price.column(tree_for[0], width = tree_for[1])
 
+# 滾動軸
 vsb = ttk.Scrollbar(frame2, orient="vertical", command=tree_insert_price.yview)
 vsb.place(x=767, y=41, height=225)
 
 tree_insert_price.configure(yscrollcommand=vsb.set)
 
+# 半成品價格
+button2 = tk.Button(frame2, text="開啟材料腳本", command = resource_button_click)
+button2.place(x=5, y=275)
+
+tree_resource_price = ttk.Treeview(frame2, columns=("Date", "Time", "ResourceName", "Tier", "Enchantment", "AveragePrice"), show="headings")
+tree_resource_price.place(x=5, y=310)
+
+tree_rs_value = ["Date", 100], ["Time", 100], ["ResourceName", 120], ["Tier", 100], ["Enchantment", 100], ["AveragePrice", 120]
+
+for tree_for in tree_rs_value:
+    tree_resource_price.heading(tree_for[0], text=tree_for[0])
+    tree_resource_price.column(tree_for[0], width = tree_for[1])
+
+# 滾動軸
+vsb = ttk.Scrollbar(frame2, orient="vertical", command=tree_resource_price.yview)
+vsb.place(x=647, y=310, height=225)
+    
+tree_resource_price.configure(yscrollcommand=vsb.set)
+
+# --------------------------------------------------------------------------#
+
 def scroll_to_bottom():
     tree_insert_price.yview_moveto(1)  # 1 代表滾動到最底部
-# --------------------------------------------------------------------------#
 
 # 顯示 Notebook (分頁)
 notebook.pack(expand=True, fill="both")

@@ -45,4 +45,4 @@ def get_resource_ss():
     take_ss(Value[1], Value[2], Value[3], Value[4], Value[0])
     print("已截圖")
 
-get_resource_ss()
+# get_resource_ss()

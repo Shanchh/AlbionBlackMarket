@@ -22,7 +22,7 @@ def reading_resource():
 
     re_data = AP_trans(data[1].strip())
     
-    print(re_data)
+    return re_data
 
 def read_pic(folder_path, name):
 
@@ -91,5 +91,3 @@ def w_corrections(check_v):
             print(f"已自動將Tier[{wrong}]修正成[{correct}]")
 
     return output_v
-
-reading_resource()

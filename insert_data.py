@@ -13,7 +13,6 @@ def insert_data():
 
         try:
             final = loading_source()
-            print(final)
         except:
             print("判讀圖片發生錯誤")
             

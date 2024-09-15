@@ -19,7 +19,7 @@ def get_ss():
         # [內容名稱],[left], [top], [width], [height]
         ["1_ItemName", 574, 315, 634, 60],
         ["3_Enchantment", 702, 478, 160, 23],
-        ["4_SellOrderNow", 1375, 435, 130, 28],
+        ["4_SellOrderNow", 1372, 435, 135, 28],
         ["5_AveragePrice", 2022, 999, 108, 40]
     ]
 

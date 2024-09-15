@@ -1,8 +1,11 @@
 import pyautogui
 import time
 import random
+from insert_data import insert_data
 
 def check_script():
+
+    data =[]
 
     tier_default = [545, 490]
     enchant_default = [790, 495]
@@ -10,7 +13,7 @@ def check_script():
     tier_t5 = [549, 583]
     enchant_e0 = [795, 535]
     interval = 47
-    time.sleep(1.5)
+    # time.sleep(1.5)
     
     # 選擇裝備品質
     click_event(1057, 492)
@@ -32,6 +35,10 @@ def check_script():
             click_event(enchant_e0[0], enchant_e0[1])
             enchant_e0[1] += interval
 
+            data.append(insert_data())
+    
+    return data
+
 def click_event(x, y):
     time.sleep(random_dealy())
     pyautogui.moveTo(x, y)
@@ -41,4 +48,4 @@ def random_dealy():
     random_number = random.uniform(0.001, 0.7)
     return random_number
 
-check_script()
+# check_script()

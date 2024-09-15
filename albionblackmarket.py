@@ -5,6 +5,7 @@ from tkinter import ttk, messagebox
 from insert_data import insert_data
 from config import connection
 from pynput import keyboard
+from script import check_script
 import threading
 
 start_listening = False
@@ -24,13 +25,19 @@ def on_press(key):
         if key.char == 'w':
             value = insert_data()
             for val in value:
-                tree.insert("", "end", values=val)
-            
-                # 自動滾動到最底部
-                scroll_to_bottom()
+                tree_scroll(val)
+        if key.char == 'e':
+            value = check_script()
+            for i in value:
+                for val in i:
+                    tree_scroll(val)
         print(value)
     except AttributeError:
         pass
+    except TypeError as e:
+        print(f"輸入錯誤: {e}")
+    except Exception as e:
+        print(f"其他錯誤: {e}")
 
 def on_release(key):
     if key == keyboard.Key.esc:
@@ -57,6 +64,11 @@ def start_listener_thread():
     listener_thread = threading.Thread(target=start_keyboard_listener)
     listener_thread.daemon = True  # 設置守護進程，讓程式退出時自動關閉
     listener_thread.start()
+
+def tree_scroll(val):
+    tree.insert("", "end", values=val)
+    # 自動滾動到最底部
+    scroll_to_bottom()
 
 # 創建主畫面
 root = tk.Tk()

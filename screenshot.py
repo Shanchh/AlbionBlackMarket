@@ -38,4 +38,11 @@ def take_ss(left, top, width, height, name):
     # 保存為圖片
     screenshot.save(os.path.join('source', output))
 
-# get_ss()
+def get_resource_ss():
+
+    Value = ["99_Resource", 2252, 915, 89, 31]
+
+    take_ss(Value[1], Value[2], Value[3], Value[4], Value[0])
+    print("已截圖")
+
+get_resource_ss()

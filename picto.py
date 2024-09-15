@@ -14,9 +14,15 @@ def loading_source():
         
     final_ex = tidy_data(export)
 
-    # print(final_ex)
-
     return final_ex
+
+def reading_resource():
+
+    data = read_pic('source/', '99_Resource.png')
+
+    re_data = AP_trans(data[1].strip())
+    
+    print(re_data)
 
 def read_pic(folder_path, name):
 
@@ -86,4 +92,4 @@ def w_corrections(check_v):
 
     return output_v
 
-# loading_source()
+reading_resource()

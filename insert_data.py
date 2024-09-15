@@ -30,5 +30,5 @@ def insert_data():
         connection.commit()
 
         return values
-    except:
-        print("發生錯誤")
+    except Exception as e:
+        print(f"發生錯誤: {e}")

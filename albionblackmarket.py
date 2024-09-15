@@ -28,7 +28,7 @@ def on_press(key):
             
                 # 自動滾動到最底部
                 scroll_to_bottom()
-
+        print(value)
     except AttributeError:
         pass
 

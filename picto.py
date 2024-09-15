@@ -82,7 +82,7 @@ def w_corrections(check_v):
     for wrong, correct in corrections.items():
         output_v = check_v.replace(wrong, correct)
         
-    print(output_v)
+    print(f"已自動將Tier[{wrong}修正成{correct}]")
 
     return output_v
 

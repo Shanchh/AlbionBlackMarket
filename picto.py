@@ -37,7 +37,8 @@ def tidy_data(export):
 
     # 分割階級與物品名稱
     export[0][1] = sname[1]
-    insert_data = ['2_Tier', sname[0]]
+    tier_name = w_corrections(sname[0])
+    insert_data = ['2_Tier', tier_name]
     export.insert(1,insert_data)
 
     # 附魔文字取最後一個字
@@ -71,5 +72,18 @@ def AP_trans(value):
     else:
         value = value.replace(",","")
         return int(value) 
+
+def w_corrections(check_v):
+
+    corrections = {
+        "Masfer": "Master",
+    }
+    
+    for wrong, correct in corrections.items():
+        output_v = check_v.replace(wrong, correct)
+        
+    print(output_v)
+
+    return output_v
 
 # loading_source()

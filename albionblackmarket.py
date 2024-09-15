@@ -66,7 +66,7 @@ def start_listener_thread():
     listener_thread.start()
 
 def tree_scroll(val):
-    tree.insert("", "end", values=val)
+    tree_insert_price.insert("", "end", values=val)
     # 自動滾動到最底部
     scroll_to_bottom()
 
@@ -102,32 +102,22 @@ label2 = tk.Label(frame2, text="尚未開始偵測", bg="lightblue")
 label2.place(x=65, y=7)
 
 # 顯示 Treeview 
-tree = ttk.Treeview(frame2, columns=("Date", "Time", "Item", "Tier", "Enchantment", "SellOrder", "AveragePrice"), show="headings")
-tree.place(x=5, y=40)
+tree_insert_price = ttk.Treeview(frame2, columns=("Date", "Time", "Item", "Tier", "Enchantment", "SellOrder", "AveragePrice"), show="headings")
+tree_insert_price.place(x=5, y=40)
 
-tree.heading("Date", text="Date")
-tree.heading("Time", text="Time")
-tree.heading("Item", text="Item")
-tree.heading("Tier", text="Tier")
-tree.heading("Enchantment", text="Enchantment")
-tree.heading("SellOrder", text="Sell Order Now")
-tree.heading("AveragePrice", text="Average Price")
+tree_ip_value = ["Date", 100], ["Time", 100], ["Item", 120], ["Tier", 100], ["Enchantment", 100], ["SellOrder", 120], ["AveragePrice", 120]
 
-tree.column("Date", width=100)
-tree.column("Time", width=100)
-tree.column("Item", width=120)
-tree.column("Tier", width=100)
-tree.column("Enchantment", width=100)
-tree.column("SellOrder", width=120)
-tree.column("AveragePrice", width=120)
+for tree_for in tree_ip_value:
+    tree_insert_price.heading(tree_for[0], text=tree_for[0])
+    tree_insert_price.column(tree_for[0], width = tree_for[1])
 
-vsb = ttk.Scrollbar(frame2, orient="vertical", command=tree.yview)
+vsb = ttk.Scrollbar(frame2, orient="vertical", command=tree_insert_price.yview)
 vsb.place(x=767, y=41, height=225)
 
-tree.configure(yscrollcommand=vsb.set)
+tree_insert_price.configure(yscrollcommand=vsb.set)
 
 def scroll_to_bottom():
-    tree.yview_moveto(1)  # 1 代表滾動到最底部
+    tree_insert_price.yview_moveto(1)  # 1 代表滾動到最底部
 # --------------------------------------------------------------------------#
 
 # 顯示 Notebook (分頁)

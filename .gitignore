@@ -6,3 +6,4 @@ __pycache__/
 
 /test.py
 /config.py
+/check_mouse_xy.py

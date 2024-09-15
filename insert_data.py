@@ -17,6 +17,7 @@ def insert_data():
         except:
             print("判讀圖片發生錯誤")
             
+            
         cursor = connection.cursor()
         query = "INSERT INTO blackmarketprice (Date, Time, ItemName, Tier, Enchantment, SellOrderNow, AveragePrice) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         values = [
@@ -27,5 +28,7 @@ def insert_data():
         ]
         cursor.executemany(query, values)
         connection.commit()
+
+        return values
     except:
         print("發生錯誤")

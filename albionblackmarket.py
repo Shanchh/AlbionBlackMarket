@@ -1,7 +1,7 @@
 from mysql.connector import Error
 import tkinter as tk
-from tkinter import ttk
-from tkinter import messagebox
+from tkinter import *
+from tkinter import ttk, messagebox
 from insert_data import insert_data
 from config import connection
 from pynput import keyboard
@@ -22,12 +22,20 @@ def on_startup():
 def on_press(key):
     try:
         if key.char == 'w':
-            insert_data()
+            value = insert_data()
+            for val in value:
+                tree.insert("", "end", values=val)
+            
+                # 自動滾動到最底部
+                scroll_to_bottom()
+
     except AttributeError:
         pass
 
 def on_release(key):
     if key == keyboard.Key.esc:
+        global start_listening
+        start_listening = False
         print("已退出監聽")
         return False
     
@@ -38,7 +46,7 @@ def start_keyboard_listener():
         pass
     else:
         start_listening = True
-        print("監聽啟動！按 'a' 鍵會觸發事件，按 'Esc' 鍵退出。")
+        print("監聽啟動！按 'w' 鍵會觸發事件，按 'Esc' 鍵退出。")
         with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
             listener.join()
 
@@ -53,6 +61,8 @@ root = tk.Tk()
 root.title("AlbionBlackMarket God")
 root.geometry("1280x720")
 
+root.resizable(False, False)
+
 notebook = ttk.Notebook(root)
 
 # --------------------------------------------------------------------------#
@@ -66,16 +76,41 @@ label1.pack(pady=20)
 # --------------------------------------------------------------------------#
 
 # --------------------------------------------------------------------------#
-# 創建頁面12
+# 創建頁面2
 frame2 = tk.Frame(notebook, bg="lightgreen")
 notebook.add(frame2, text="資料新增")
 
 # 頁面2的內容
-label2 = tk.Label(frame2, text="這是頁面 2 的內容", bg="lightgreen")
-label2.pack(pady=20)
+button = tk.Button(frame2, text="開啟偵測", command = start_listener_thread)
+button.place(x=5, y=5)
 
-button = tk.Button(frame2, text="輸入資料", command = start_listener_thread)
-button.pack(pady=50)
+# 顯示 Treeview
+tree = ttk.Treeview(frame2, columns=("Date", "Time", "Item", "Tier", "Enchantment", "SellOrder", "AveragePrice"), show="headings")
+tree.place(x=5, y=40)
+
+tree.heading("Date", text="Date")
+tree.heading("Time", text="Time")
+tree.heading("Item", text="Item")
+tree.heading("Tier", text="Tier")
+tree.heading("Enchantment", text="Enchantment")
+tree.heading("SellOrder", text="Sell Order Now")
+tree.heading("AveragePrice", text="Average Price")
+
+tree.column("Date", width=100)
+tree.column("Time", width=100)
+tree.column("Item", width=120)
+tree.column("Tier", width=100)
+tree.column("Enchantment", width=100)
+tree.column("SellOrder", width=120)
+tree.column("AveragePrice", width=120)
+
+vsb = ttk.Scrollbar(frame2, orient="vertical", command=tree.yview)
+vsb.place(x=767, y=41, height=225)
+
+tree.configure(yscrollcommand=vsb.set)
+
+def scroll_to_bottom():
+    tree.yview_moveto(1)  # 1 代表滾動到最底部
 # --------------------------------------------------------------------------#
 
 # 顯示 Notebook (分頁)

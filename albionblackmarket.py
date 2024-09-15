@@ -2,7 +2,7 @@ from mysql.connector import Error
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk, messagebox
-from insert_data import insert_data
+from insert_data import insert_data, insert_resource_data
 from config import connection
 from pynput import keyboard
 from script import check_script
@@ -74,7 +74,8 @@ def tree_scroll(val):
     scroll_to_bottom()
 
 def resource_button_click():
-    pass
+    vaule = insert_resource_data(0, 5, 1)
+    print (vaule)
 
 # 創建主畫面
 root = tk.Tk()

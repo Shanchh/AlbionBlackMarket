@@ -37,6 +37,7 @@ def on_release(key):
         global start_listening
         start_listening = False
         print("已退出監聽")
+        label2.config(text="尚未開始偵測", bg="lightblue")
         return False
     
 # 啟動鍵盤監聽的函數
@@ -47,6 +48,7 @@ def start_keyboard_listener():
     else:
         start_listening = True
         print("監聽啟動！按 'w' 鍵會觸發事件，按 'Esc' 鍵退出。")
+        label2.config(text="正在偵測中", bg="red")
         with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
             listener.join()
 
@@ -84,7 +86,10 @@ notebook.add(frame2, text="資料新增")
 button = tk.Button(frame2, text="開啟偵測", command = start_listener_thread)
 button.place(x=5, y=5)
 
-# 顯示 Treeview
+label2 = tk.Label(frame2, text="尚未開始偵測", bg="lightblue")
+label2.place(x=65, y=7)
+
+# 顯示 Treeview 
 tree = ttk.Treeview(frame2, columns=("Date", "Time", "Item", "Tier", "Enchantment", "SellOrder", "AveragePrice"), show="headings")
 tree.place(x=5, y=40)
 

@@ -48,10 +48,6 @@ def random_delay():
     random_number = random.uniform(0.001, 0.7)
     return random_number
 
-def long_random_delay():
-    random_number = random.uniform(1.5, 2)
-    return random_number
-
 def resource_script(value):
     # 布料Cloth、皮革Leather、鐵條MetalBar、木條Planks、類別選項、類別半成品
     check_point = [951, 975], [951, 1107], [915,1153], [915, 1289], [718, 340], [714, 1241]

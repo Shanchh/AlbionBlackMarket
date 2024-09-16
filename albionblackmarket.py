@@ -118,7 +118,7 @@ notebook = ttk.Notebook(root)
 
 # --------------------------------------------------------------------------#
 # 創建頁面1
-frame1 = tk.Frame(notebook, bg="lightblue")
+frame1 = tk.Frame(notebook, bg="#FFE4E1")
 notebook.add(frame1, text="黑市總覽")
 
 # 頁面1的內容
@@ -128,7 +128,7 @@ label1.pack(pady=20)
 
 # --------------------------------------------------------------------------#
 # 創建頁面2
-frame2 = tk.Frame(notebook, bg="lightgreen")
+frame2 = tk.Frame(notebook, bg='#dbead5')
 notebook.add(frame2, text="資料新增")
 
 # 頁面2的內容
@@ -139,10 +139,10 @@ label2 = tk.Label(frame2, text="尚未開始偵測", bg="lightblue")
 label2.place(x=68, y=7)
 
 # 顯示 Treeview 
-tree_insert_price = ttk.Treeview(frame2, columns=("Date", "Time", "Item", "Tier", "Enchantment", "SellOrder", "AveragePrice"), show="headings")
+tree_insert_price = ttk.Treeview(frame2, columns=("日期", "時間", "裝備名稱", "階級", "附魔等級", "目前黑市售價", "四週平均售價"), show="headings")
 tree_insert_price.place(x=5, y=40)
 
-tree_ip_value = ["Date", 100], ["Time", 100], ["Item", 120], ["Tier", 100], ["Enchantment", 100], ["SellOrder", 120], ["AveragePrice", 120]
+tree_ip_value = ["日期", 100], ["時間", 100], ["裝備名稱", 120], ["階級", 100], ["附魔等級", 100], ["目前黑市售價", 120], ["四週平均售價", 120]
 
 for tree_for in tree_ip_value:
     tree_insert_price.heading(tree_for[0], text=tree_for[0])
@@ -158,10 +158,10 @@ tree_insert_price.configure(yscrollcommand=vsb.set)
 button2 = tk.Button(frame2, text="開啟材料腳本", command = resource_button_click)
 button2.place(x=5, y=275)
 
-tree_resource_price = ttk.Treeview(frame2, columns=("Date", "Time", "ResourceName", "Tier", "Enchantment", "AveragePrice"), show="headings")
+tree_resource_price = ttk.Treeview(frame2, columns=("日期", "時間", "半成品名稱", "階級", "附魔等級", "市場估價"), show="headings")
 tree_resource_price.place(x=5, y=310)
 
-tree_rs_value = ["Date", 100], ["Time", 100], ["ResourceName", 120], ["Tier", 100], ["Enchantment", 100], ["AveragePrice", 120]
+tree_rs_value = ["日期", 100], ["時間", 100], ["半成品名稱", 120], ["階級", 100], ["附魔等級", 100], ["市場估價", 120]
 
 for tree_for in tree_rs_value:
     tree_resource_price.heading(tree_for[0], text=tree_for[0])
@@ -173,6 +173,44 @@ vsb.place(x=647, y=310, height=225)
     
 tree_resource_price.configure(yscrollcommand=vsb.set)
 
+# --------------------------------------------------------------------------#
+
+# --------------------------------------------------------------------------#
+# 創建頁面3
+frame3 = tk.Frame(notebook, bg="#e6e6fa")
+notebook.add(frame3, text="半成品價格與裝備成本")
+
+# 頁面3的內容
+Frame3_label1 = tk.Label(frame3, text="半成品市場估價", bg="#d8bfd8")
+Frame3_label1.place(x=5, y=10)
+
+Frame3_combobox1_options = ["布料", "皮革", "礦條", "木條"]
+Frame3_combobox1 = ttk.Combobox(frame3, values=Frame3_combobox1_options, state="readonly")
+Frame3_combobox1.place(x=102, y=10)
+
+# 設置預設選項
+Frame3_combobox1.set("選擇一個選項")
+
+columns = ("", "附魔0", "附魔1", "附魔2", "附魔3", "附魔4")
+Frame3_tree_resource = ttk.Treeview(frame3, columns=columns, show="headings", selectmode="none")
+
+for col in columns:
+    Frame3_tree_resource.heading(col, text=col)
+    Frame3_tree_resource.column(col, width=100, anchor='center')
+
+data = [
+    ("Tier4", 40, 41, 42, 43, 44),
+    ("Tier5", 50, 51, 52, 53, 54),
+    ("Tier6", 60, 61, 62, 63, 64),
+    ("Tier7", 70, 71, 72, 73, 74),
+    ("Tier8", 80, 81, 82, 83, 84)
+]
+
+# 插入每一行數據
+for row in data:
+    Frame3_tree_resource.insert("", "end", values=row)
+
+Frame3_tree_resource.place(x=5, y=40, height=127)
 # --------------------------------------------------------------------------#
 
 # 顯示 Notebook (分頁)

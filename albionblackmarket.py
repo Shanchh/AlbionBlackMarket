@@ -5,8 +5,9 @@ from tkinter import ttk, messagebox
 from insert_data import insert_data, insert_resource_data
 from config import connection
 from pynput import keyboard
-from script import check_script
+from script import check_script, resource_script, resource_tier_script, resource_enchant_script
 import threading
+import time
 
 start_listening = False
 
@@ -71,11 +72,40 @@ def start_listener_thread():
 def tree_scroll(val):
     tree_insert_price.insert("", "end", values=val)
     # 自動滾動到最底部
-    scroll_to_bottom()
+    tree_insert_price.yview_moveto(1)  # 1 代表滾動到最底部
+
+def tree_resource_scroll(val):
+
+    tree_resource_price.insert("", "end", values=val)
+
+    tree_resource_price.yview_moveto(1)  # 自動滾動到最底部 1代表滾動到最底部
 
 def resource_button_click():
-    vaule = insert_resource_data(0, 5, 1)
-    print (vaule)
+    # vaule = insert_resource_data(0, 5, 1)
+
+    for Category in range(4):
+
+        resource_script(Category)
+
+        for Tier in range(5):
+
+            resource_tier_script(Tier)
+
+            for Enchant in range(5):
+
+                resource_enchant_script(Enchant)
+
+                time.sleep(2)
+                data = insert_resource_data(Category, Tier + 4, Enchant)
+
+                print(data)
+                for datas in data:
+                    tree_resource_scroll(datas)
+
+                tree_resource_price.update()  # 立即更新顯示
+
+    # for i in vaule:
+    #     tree_resource_scroll(i)
 
 # 創建主畫面
 root = tk.Tk()
@@ -144,9 +174,6 @@ vsb.place(x=647, y=310, height=225)
 tree_resource_price.configure(yscrollcommand=vsb.set)
 
 # --------------------------------------------------------------------------#
-
-def scroll_to_bottom():
-    tree_insert_price.yview_moveto(1)  # 1 代表滾動到最底部
 
 # 顯示 Notebook (分頁)
 notebook.pack(expand=True, fill="both")

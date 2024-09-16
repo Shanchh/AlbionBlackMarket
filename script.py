@@ -40,15 +40,44 @@ def check_script():
     return data
 
 def click_event(x, y):
-    time.sleep(random_dealy())
+    time.sleep(random_delay())
     pyautogui.moveTo(x, y)
     pyautogui.click()
 
-def random_dealy():
+def random_delay():
     random_number = random.uniform(0.001, 0.7)
     return random_number
 
-def check_resource():
-    # 類別選項、類別半成品、布料Cloth、皮革Leather、鐵條MetalBar、木條Planks
-    check_point = [718, 340], [714, 1241], [951, 975], [951, 1107], [915,1153], [915, 1289]
+def long_random_delay():
+    random_number = random.uniform(1.5, 2)
+    return random_number
+
+def resource_script(value):
+    # 布料Cloth、皮革Leather、鐵條MetalBar、木條Planks、類別選項、類別半成品
+    check_point = [951, 975], [951, 1107], [915,1153], [915, 1289], [718, 340], [714, 1241]
+
+    click_event(check_point[4][0],check_point[4][1])
+
+    time.sleep(random_delay())
+    pyautogui.moveTo(check_point[5][0],check_point[5][1])
+    
+    click_event(check_point[value][0],check_point[value][1])
+
+def resource_tier_script(value):
+
+    Tier_Point = [966, 338]
+    Tier4_Point = [964, 564]
+    interval = 44
+
+    click_event(Tier_Point[0], Tier_Point[1])
+
+    click_event(Tier4_Point[0], int(Tier4_Point[1]) + (interval * value))
+
+def resource_enchant_script(value):
+
+    Enchant_Point = [675, 575]
+    interval = 131
+
+    click_event(Enchant_Point[0], int(Enchant_Point[1]) + (interval * value))
+
 # check_script()

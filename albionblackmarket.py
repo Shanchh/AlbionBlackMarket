@@ -6,6 +6,7 @@ from insert_data import insert_data, insert_resource_data
 from config import connection
 from pynput import keyboard
 from script import check_script, resource_script, resource_tier_script, resource_enchant_script
+from data_processing import resource_price_search
 import threading
 import time
 
@@ -81,7 +82,6 @@ def tree_resource_scroll(val):
     tree_resource_price.yview_moveto(1)  # 自動滾動到最底部 1代表滾動到最底部
 
 def resource_button_click():
-    # vaule = insert_resource_data(0, 5, 1)
 
     for Category in range(4):
 
@@ -104,8 +104,17 @@ def resource_button_click():
 
                 tree_resource_price.update()  # 立即更新顯示
 
-    # for i in vaule:
-    #     tree_resource_scroll(i)
+def on_select(event):
+
+    select_resource = resource_price_search(Frame3_combobox1.get())
+
+    for item in Frame3_tree_resource.get_children():
+
+        Frame3_tree_resource.delete(item)
+
+    for value in select_resource:
+
+        Frame3_tree_resource.insert("", "end", values=value)
 
 # 創建主畫面
 root = tk.Tk()
@@ -184,12 +193,14 @@ notebook.add(frame3, text="半成品價格與裝備成本")
 Frame3_label1 = tk.Label(frame3, text="半成品市場估價", bg="#d8bfd8")
 Frame3_label1.place(x=5, y=10)
 
-Frame3_combobox1_options = ["布料", "皮革", "礦條", "木條"]
+Frame3_combobox1_options = ["1-布料", "2-皮革", "3-礦條", "4-木條"]
 Frame3_combobox1 = ttk.Combobox(frame3, values=Frame3_combobox1_options, state="readonly")
 Frame3_combobox1.place(x=102, y=10)
 
 # 設置預設選項
 Frame3_combobox1.set("選擇一個選項")
+
+Frame3_combobox1.bind("<<ComboboxSelected>>", on_select)
 
 columns = ("", "附魔0", "附魔1", "附魔2", "附魔3", "附魔4")
 Frame3_tree_resource = ttk.Treeview(frame3, columns=columns, show="headings", selectmode="none")
@@ -198,13 +209,7 @@ for col in columns:
     Frame3_tree_resource.heading(col, text=col)
     Frame3_tree_resource.column(col, width=100, anchor='center')
 
-data = [
-    ("Tier4", 40, 41, 42, 43, 44),
-    ("Tier5", 50, 51, 52, 53, 54),
-    ("Tier6", 60, 61, 62, 63, 64),
-    ("Tier7", 70, 71, 72, 73, 74),
-    ("Tier8", 80, 81, 82, 83, 84)
-]
+data = [("Tier4"), ("Tier5"), ("Tier6"), ("Tier7"), ("Tier8")]
 
 # 插入每一行數據
 for row in data:

@@ -10,38 +10,62 @@ from data_processing import resource_price_search
 import threading
 import time
 
+# 設定裝備價格監聽預設為 關閉
 start_listening = False
 
+# 程序開啟時自動執行
 def on_startup():
+
     try:
+
         # 連接到 MySQL 資料庫
         if connection.is_connected():
+
             print("成功連接到資料庫")
 
     # 連線失敗時顯示連接失敗視窗
     except Error as e:
+
+        # 連線失敗視窗建立
         messagebox.showerror("錯誤", f"連接失敗: {e}")
         print(f"連接失敗: {e}")
 
+# 監聽器中:按鍵監聽
 def on_press(key):
+
     try:
+
+        # 如果按下 W 鍵 (單獨上傳黑市裝備價格)
         if key.char == 'w':
+            
+            # 黑市裝備價格擷取並讀取內容,將數據導入至資料庫 | value = (日期, 時間, 裝備名稱, 階級, 附魔等級, 現在售價, 四週平均價)
             value = insert_data()
+            # 單獨取 value 內的值
             for val in value:
+                # 輸入數值進 tree_insert_price 樹狀顯示
                 tree_scroll(val)
             print(value)
-            
+        
+        # 如果按下 E 鍵 (4.0~8.4 整套查價)
         if key.char == 'e':
+            
+            # 執行黑市裝備 4.0~8.4 查價腳本並回傳總數據
             value = check_script()
+            # 單獨讀取各階級各附魔價格資料
             for i in value:
+                # 單獨讀取各項數據
                 for val in i:
+                    # 輸入數值進 tree_insert_price 樹狀顯示
                     tree_scroll(val)
             print(value)
 
+    # 按下特殊按鍵的例外事件處理
     except AttributeError:
         pass
+    # 輸入錯誤數值的例外事件處理
     except TypeError as e:
         print(f"輸入錯誤: {e}")
+    # 常見錯誤例外事件處理
     except Exception as e:
         print(f"其他錯誤: {e}")
 
@@ -71,6 +95,7 @@ def start_listener_thread():
     listener_thread.daemon = True  # 設置守護進程，讓程式退出時自動關閉
     listener_thread.start()
 
+# 輸入數值進 tree_insert_price 樹狀顯示
 def tree_scroll(val):
     tree_insert_price.insert("", "end", values=val)
     # 自動滾動到最底部

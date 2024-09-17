@@ -17,7 +17,7 @@ def on_startup():
         # 連接到 MySQL 資料庫
         if connection.is_connected():
             print("成功連接到資料庫")
-            
+
     # 連線失敗時顯示連接失敗視窗
     except Error as e:
         messagebox.showerror("錯誤", f"連接失敗: {e}")
@@ -230,4 +230,3 @@ root.iconbitmap("abm.ico")
 
 # 開始主循環
 root.mainloop()
-

@@ -17,7 +17,8 @@ def on_startup():
         # 連接到 MySQL 資料庫
         if connection.is_connected():
             print("成功連接到資料庫")
-
+            
+    # 連線失敗時顯示連接失敗視窗
     except Error as e:
         messagebox.showerror("錯誤", f"連接失敗: {e}")
         print(f"連接失敗: {e}")
@@ -119,7 +120,7 @@ def on_select(event):
 # 創建主畫面
 root = tk.Tk()
 root.title("AlbionBlackMarket God")
-root.geometry("1280x720")
+root.geometry("795x720")
 
 root.resizable(False, False)
 

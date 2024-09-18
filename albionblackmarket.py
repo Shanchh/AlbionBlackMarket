@@ -7,6 +7,7 @@ from config import connection
 from pynput import keyboard
 from script import check_script, resource_script, resource_tier_script, resource_enchant_script
 from data_processing import resource_price_search
+from frame.frame1 import create_frame1
 import threading
 import time
 
@@ -166,15 +167,7 @@ root.resizable(False, False)
 
 notebook = ttk.Notebook(root)
 
-# --------------------------------------------------------------------------#
-# 創建頁面1
-frame1 = tk.Frame(notebook, bg="#FFE4E1")
-notebook.add(frame1, text="黑市總覽")
-
-# 頁面1的內容
-label1 = tk.Label(frame1, text="這是頁面 1 的內容", bg="lightblue")
-label1.pack(pady=20)
-# --------------------------------------------------------------------------#
+create_frame1(notebook)
 
 # --------------------------------------------------------------------------#
 # 創建頁面2

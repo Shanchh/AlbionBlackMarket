@@ -35,8 +35,8 @@ notebook = ttk.Notebook(root)
 
 create_frame1(notebook)
 
-Frame2_Class(None, None, None, None).create_frame2(notebook)
-Frame3_Class(None, None, None).create_frame3(notebook)
+Frame2_Class(notebook).create_frame2()
+Frame3_Class(notebook).create_frame3()
 
 # 顯示 Notebook (分頁)
 notebook.pack(expand=True, fill="both")

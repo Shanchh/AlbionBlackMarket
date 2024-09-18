@@ -9,25 +9,13 @@ from script import check_script, resource_script, resource_tier_script, resource
 
 
 class Frame2_Class:
-    def __init__(self, frame2, label2, tree_insert_price, tree_resource_price):
+    def __init__(self, notebook):
 
         # 設定裝備價格監聽預設為 關閉
         self.start_listening = False
+        self.notebook = notebook
         
-        self.frame2 = frame2
-        self.label2 = label2
-        self.tree_insert_price = tree_insert_price
-        self.tree_resource_price = tree_resource_price
-
-    # 創建頁面2
-    def create_frame2(self, notebook):
-
         self.frame2 = tk.Frame(notebook, bg='#dbead5')
-        notebook.add(self.frame2, text="資料新增")
-
-        # 頁面2的內容
-        button = tk.Button(self.frame2, text="開啟偵測", command = self.start_listener_thread)
-        button.place(x=5, y=5)
 
         self.label2 = tk.Label(self.frame2, text="尚未開始偵測", bg="lightblue")
         self.label2.place(x=68, y=7)
@@ -35,6 +23,18 @@ class Frame2_Class:
         # 顯示 Treeview 
         self.tree_insert_price = ttk.Treeview(self.frame2, columns=("日期", "時間", "裝備名稱", "階級", "附魔等級", "目前黑市售價", "四週平均售價"), show="headings")
         self.tree_insert_price.place(x=5, y=40)
+
+        self.tree_resource_price = ttk.Treeview(self.frame2, columns=("日期", "時間", "半成品名稱", "階級", "附魔等級", "市場估價"), show="headings")
+        self.tree_resource_price.place(x=5, y=310)
+
+    # 創建頁面2
+    def create_frame2(self):
+
+        self.notebook.add(self.frame2, text="資料新增")
+
+        # 頁面2的內容
+        button = tk.Button(self.frame2, text="開啟偵測", command = self.start_listener_thread)
+        button.place(x=5, y=5)
 
         tree_ip_value = ["日期", 100], ["時間", 100], ["裝備名稱", 120], ["階級", 100], ["附魔等級", 100], ["目前黑市售價", 120], ["四週平均售價", 120]
 
@@ -51,9 +51,6 @@ class Frame2_Class:
         # 半成品價格
         button2 = tk.Button(self.frame2, text="開啟材料腳本", command = self.resource_button_click)
         button2.place(x=5, y=275)
-
-        self.tree_resource_price = ttk.Treeview(self.frame2, columns=("日期", "時間", "半成品名稱", "階級", "附魔等級", "市場估價"), show="headings")
-        self.tree_resource_price.place(x=5, y=310)
 
         tree_rs_value = ["日期", 100], ["時間", 100], ["半成品名稱", 120], ["階級", 100], ["附魔等級", 100], ["市場估價", 120]
 

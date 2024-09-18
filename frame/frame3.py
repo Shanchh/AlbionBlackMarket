@@ -3,35 +3,33 @@ from tkinter import ttk
 from data_processing import resource_price_search
 
 class Frame3_Class:
-    def __init__(self, frame3, Frame3_combobox1, Frame3_tree_resource):
+    def __init__(self, notebook):
         
-        self.frame3 = frame3
-        self.Frame3_combobox1 = Frame3_combobox1
-        self.Frame3_tree_resource = Frame3_tree_resource
-
-    # 創建頁面3
-    def create_frame3(self, notebook):
-
+        self.notebook = notebook
         self.frame3 = tk.Frame(notebook, bg="#e6e6fa")
-        notebook.add(self.frame3, text="半成品價格")
-
-        # 頁面3的內容
-        Frame3_label1 = tk.Label(self.frame3, text="半成品市場估價", bg="#d8bfd8")
-        Frame3_label1.place(x=5, y=10)
 
         Frame3_combobox1_options = ["1-布料", "2-皮革", "3-礦條", "4-木條"]
         self.Frame3_combobox1 = ttk.Combobox(self.frame3, values = Frame3_combobox1_options, state = "readonly")
         self.Frame3_combobox1.place(x=102, y=10)
+
+        self.columns = ("", "附魔0", "附魔1", "附魔2", "附魔3", "附魔4")
+        self.Frame3_tree_resource = ttk.Treeview(self.frame3, columns=self.columns, show="headings", selectmode="none")
+
+    # 創建頁面3
+    def create_frame3(self):
+
+        self.notebook.add(self.frame3, text="半成品價格")
+
+        # 頁面3的內容
+        Frame3_label1 = tk.Label(self.frame3, text="半成品市場估價", bg="#d8bfd8")
+        Frame3_label1.place(x=5, y=10)
 
         # 設置預設選項
         self.Frame3_combobox1.set("選擇一個選項")
 
         self.Frame3_combobox1.bind("<<ComboboxSelected>>", self.on_select)
 
-        columns = ("", "附魔0", "附魔1", "附魔2", "附魔3", "附魔4")
-        self.Frame3_tree_resource = ttk.Treeview(self.frame3, columns=columns, show="headings", selectmode="none")
-
-        for col in columns:
+        for col in self.columns:
             self.Frame3_tree_resource.heading(col, text=col)
             self.Frame3_tree_resource.column(col, width=100, anchor='center')
 

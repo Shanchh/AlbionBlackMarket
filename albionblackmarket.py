@@ -30,7 +30,7 @@ def on_startup():
         messagebox.showerror("錯誤", f"連接失敗: {e}")
         print(f"連接失敗: {e}")
 
-# 監聽器中:按鍵監聽
+# 監聽器中:按鍵按下
 def on_press(key):
 
     try:
@@ -69,23 +69,38 @@ def on_press(key):
     except Exception as e:
         print(f"其他錯誤: {e}")
 
+# 監聽器中:按鍵釋放
 def on_release(key):
+
+    # 如果按下 W 鍵 (中斷監聽)
     if key == keyboard.Key.esc:
+        # 全域 裝備價格監聽狀態
         global start_listening
+        # 設定 裝備價格監聽狀態 為關閉
         start_listening = False
         print("已退出監聽")
+        # 更新 Label2 內容及背景顏色為"亮藍色"
         label2.config(text="尚未開始偵測", bg="lightblue")
         return False
     
 # 啟動鍵盤監聽的函數
 def start_keyboard_listener():
+
+    # 全域變數 start_listening
     global start_listening
+    # 如果 start_listening 為 True 代表已開啟監聽,忽略不處理
     if start_listening == True:
+
         pass
+
     else:
+
+        # 設定 start_listening 為啟用
         start_listening = True
         print("監聽啟動！按 'w' 鍵會觸發事件，按 'Esc' 鍵退出。")
+        # 更新 label2 監聽狀態顯示文字
         label2.config(text="正在偵測中", bg="red")
+        # 鍵盤監聽器 on_press鍵盤按下, on_release鍵盤釋放
         with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
             listener.join()
 
@@ -93,7 +108,7 @@ def start_keyboard_listener():
 def start_listener_thread():
     listener_thread = threading.Thread(target=start_keyboard_listener)
     listener_thread.daemon = True  # 設置守護進程，讓程式退出時自動關閉
-    listener_thread.start()
+    listener_thread.start() # 啟動鍵盤監聽器
 
 # 輸入數值進 tree_insert_price 樹狀顯示
 def tree_scroll(val):

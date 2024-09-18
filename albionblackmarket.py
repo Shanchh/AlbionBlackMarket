@@ -2,18 +2,10 @@ from mysql.connector import Error
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk, messagebox
-from insert_data import insert_data, insert_resource_data
 from config import connection
-from pynput import keyboard
-from script import check_script, resource_script, resource_tier_script, resource_enchant_script
 from data_processing import resource_price_search
 from frame.frame1 import create_frame1
 from frame.frame2 import Frame2_Class
-import threading
-import time
-
-# 設定裝備價格監聽預設為 關閉
-start_listening = False
 
 # 程序開啟時自動執行
 def on_startup():

@@ -10,8 +10,11 @@ from script import check_script, resource_script, resource_tier_script, resource
 
 class Frame2_Class:
     def __init__(self, frame2, label2, tree_insert_price, tree_resource_price):
-        self.frame2 = frame2
+
+        # 設定裝備價格監聽預設為 關閉
         self.start_listening = False
+        
+        self.frame2 = frame2
         self.label2 = label2
         self.tree_insert_price = tree_insert_price
         self.tree_resource_price = tree_resource_price

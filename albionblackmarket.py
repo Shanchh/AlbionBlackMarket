@@ -6,6 +6,7 @@ from config import connection
 from frame.frame1 import create_frame1
 from frame.frame2 import Frame2_Class
 from frame.frame3 import Frame3_Class
+from frame.EquipCost import EquipCost
 
 # 程序開啟時自動執行
 def on_startup():
@@ -37,6 +38,7 @@ create_frame1(notebook)
 
 Frame2_Class(notebook).create_frame2()
 Frame3_Class(notebook).create_frame3()
+EquipCost(notebook).Create_EquipCost_Frame()
 
 # 顯示 Notebook (分頁)
 notebook.pack(expand=True, fill="both")

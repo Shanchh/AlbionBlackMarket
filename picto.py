@@ -147,3 +147,5 @@ def w_corrections(check_v):
 
     # 回傳 (無須修正/修正完) 結果
     return output_v
+
+reading_resource()

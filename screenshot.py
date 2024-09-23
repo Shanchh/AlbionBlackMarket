@@ -45,7 +45,7 @@ def take_ss(left, top, width, height, name):
 def get_resource_ss():
 
     # [內容名稱],[left], [top], [width], [height]
-    Value = ["99_Resource", 2252, 915, 89, 31]
+    Value = ["99_Resource", 2252, 915, 89, 35]
 
     # 執行畫面截圖 Function | take,ss(left, top, width, height, name)
     take_ss(Value[1], Value[2], Value[3], Value[4], Value[0])

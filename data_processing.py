@@ -2,7 +2,7 @@ from config import connection
 
 # 從資料庫調特定種類半成品的所有階級附魔價格
 def resource_price_search(Category):
-
+    
     # 將Category字串取一個值並-1
     num = int(Category[0]) -1
 
@@ -53,4 +53,5 @@ def resource_price_search(Category):
         data.append(row)
 
     # 回傳 data | data = Tier4 ~ Tier8 的 row
+
     return data

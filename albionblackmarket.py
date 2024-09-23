@@ -3,7 +3,6 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk, messagebox
 from config import connection
-from frame.frame1 import create_frame1
 from frame.frame2 import Frame2_Class
 from frame.frame3 import Frame3_Class
 from frame.EquipCost import EquipCost
@@ -28,17 +27,16 @@ def on_startup():
 # 創建主畫面
 root = tk.Tk()
 root.title("AlbionBlackMarket God")
-root.geometry("795x720")
+root.geometry("1366x768")
 
 root.resizable(False, False)
 
 notebook = ttk.Notebook(root)
 
-create_frame1(notebook)
+EquipCost(notebook).Create_EquipCost_Frame()
 
 Frame2_Class(notebook).create_frame2()
 Frame3_Class(notebook).create_frame3()
-EquipCost(notebook).Create_EquipCost_Frame()
 
 # 顯示 Notebook (分頁)
 notebook.pack(expand=True, fill="both")

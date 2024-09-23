@@ -77,57 +77,138 @@ ECList_Third_english = [
     ]
 ]
 
-EquipArmorList = [
-    'Cloth Armor',
-    'Cloth Helmet',
-    'Cloth Shoes',
-    'Leather Armor',
-    'Leather Helmet',
-    'Leather Shoes',
-    'Plate Armor',
-    'Plate Helmet',
-    'Plate Shoes'
-]
-
-EquipMagicList = [
-    'Arcane Staff',
-    'Cursed Staff',
-    'Fire Staff',
-    'Frost Staff',
-    'Holy Staff',
-    'Nature Staff',
-    'Shapeshifter Staff'
-]
-
-EquipMeleeList = [
-    ['Axe', 'Battleaxe', 2, 'Planks', 8, 'MetalBar', 16],
-    ['Axe', 'Greataxe', 2, 'Planks', 12, 'MetalBar', 20],
-    ['Axe', 'Halberd', 2, 'Planks', 20, 'MetalBar', 12],
-    ['Dagger', 'Dagger', 2, 'MetalBar', 12, 'Leather', 12],
-    ['Dagger', 'Dagger Pair', 2, 'MetalBar', 16, 'Leather', 16],
-    ['Dagger', 'Claws', 2, 'MetalBar', 12, 'Leather', 20],
-    ['Hammer', 'Hammer', 1, 'MetalBar', 24],
-    ['Hammer', 'Polehammer', 2, 'MetalBar', 20, 'Cloth', 12],
-    ['Hammer', 'Great Hammer', 2, 'MetalBar', 20, 'Cloth', 12],
-    ['WarGloves', 'Brawler Gloves', 2, 'MetalBar', 12, 'Leather', 20],
-    ['WarGloves', 'Battle Bracers', 2, 'MetalBar', 12, 'Leather', 20],
-    ['WarGloves', 'Spiked Gauntlets', 2, 'MetalBar', 12, 'Leather', 20],
-    # ['Mace'],
-    # ['Mace'],
-    # ['Mace'],
-    # ['Quarterstaff'],
-    # ['Quarterstaff'],
-    # ['Quarterstaff'],
-    # ['Spear'],
-    # ['Spear'],
-    # ['Spear'],
-    # ['Sword'],
-    # ['Sword'],
-    # ['Sword']
-]
-
-
-EquipRangedList = [
-    'Bow',
-    'Crossbow',
+EquipCraftList = [
+    [ # 1-護甲
+        [
+            ['Cloth Armor', 'Scholar Robe', 1, '1-Cloth', 16],
+            ['Cloth Armor', 'Cleric Robe', 1, '1-Cloth', 16],
+            ['Cloth Armor', 'Mage Robe', 1, '1-Cloth', 16]
+        ],
+        [
+            ['Cloth Helmet', 'Scholar Cowl', 1, '1-Cloth', 8],
+            ['Cloth Helmet', 'Cleric Cowl', 1, '1-Cloth', 8],
+            ['Cloth Helmet', 'Mage Cowl', 1, '1-Cloth', 8]
+        ],
+        [
+            ['Cloth Shoes', 'Scholar Sandals', 1, '1-Cloth', 8],
+            ['Cloth Shoes', 'Cleric Sandals', 1, '1-Cloth', 8],
+            ['Cloth Shoes', 'Mage Sandals', 1, '1-Cloth', 8]
+        ],
+        [
+            ['Leather Armor', 'Mercenary Jacket', 1, '2-Leather', 16],
+            ['Leather Armor', 'Hunter Jacket', 1, '2-Leather', 16],
+            ['Leather Armor', 'Assassin Jacket', 1, '2-Leather', 16]
+        ],
+        [
+            ['Leather Helmet', 'Mercenary Hood', 1, '2-Leather', 8],
+            ['Leather Helmet', 'Hunter Hood', 1, '2-Leather', 8],
+            ['Leather Helmet', 'Assassin Hood', 1, '2-Leather', 8]
+        ],
+        [
+            ['Leather Shoes', 'Mercenary Shoes', 1, '2-Leather', 8],
+            ['Leather Shoes', 'Hunter Shoes', 1, '2-Leather', 8],
+            ['Leather Shoes', 'Assassin Shoes', 1, '2-Leather', 8]
+        ],
+        [
+            ['Plate Armor', 'Soldier Armor', 1, '3-MetalBar', 16],
+            ['Plate Armor', 'Knight Armor', 1, '3-MetalBar', 16],
+            ['Plate Armor', 'Guardian Armor', 1, '3-MetalBar', 16]
+        ],
+        [
+            ['Plate Helmet', 'Soldier Helmet', 1, '3-MetalBar', 8],
+            ['Plate Helmet', 'Knight Helmet', 1, '3-MetalBar', 8],
+            ['Plate Helmet', 'Guardian Helmet', 1, '3-MetalBar', 8]
+        ],
+        [
+            ['Plate Shoes', 'Soldier Boots', 1, '3-MetalBar', 8],
+            ['Plate Shoes', 'Knight Boots', 1, '3-MetalBar', 8],
+            ['Plate Shoes', 'Guardian Boots', 1, '3-MetalBar', 8]
+        ]
+    ],
+    [ # 2-魔法武器
+        [
+            ['Arcane Staff', 'Arcane Staff', 2, '4-Planks', 16, '3-MetalBar', 8],
+            ['Arcane Staff', 'Great Arcane Staff', 2, '4-Planks', 20, '3-MetalBar', 12],
+            ['Arcane Staff', 'Enigmatic Staff', 2, '4-Planks', 20, '3-MetalBar', 12]
+        ],
+        [
+            ['Cursed Staff', 'Cursed Staff', 2, '4-Planks', 16, '3-MetalBar', 8],
+            ['Cursed Staff', 'Great Cursed Staff', 2, '4-Planks', 20, '3-MetalBar', 12],
+            ['Cursed Staff', 'Demonic Staff', 2, '4-Planks', 20, '3-MetalBar', 12]
+        ],
+        [
+            ['Fire Staff', 'Fire Staff', 2, '4-Planks', 16, '3-MetalBar', 8],
+            ['Fire Staff', 'Great Fire Staff', 2, '4-Planks', 20, '3-MetalBar', 12],
+            ['Fire Staff', 'Infernal Staff', 2, '4-Planks', 20, '3-MetalBar', 12]
+        ],
+        [
+            ['Frost Staff', 'Frost Staff', 2, '4-Planks', 16, '3-MetalBar', 8],
+            ['Frost Staff', 'Great Frost Staff', 2, '4-Planks', 20, '3-MetalBar', 12],
+            ['Frost Staff', 'Glacial Staff', 2, '4-Planks', 20, '3-MetalBar', 12]
+        ],
+        [
+            ['Holy Staff', 'Holy Staff', 2, '4-Planks', 16, '1-Cloth', 8],
+            ['Holy Staff', 'Great Holy Staff', 2, '4-Planks', 20, '1-Cloth', 12],
+            ['Holy Staff', 'Divine Staff', 2, '4-Planks', 20, '1-Cloth', 12]
+        ],
+        [
+            ['Nature Staff', 'Nature Staff', 2, '4-Planks', 16, '1-Cloth', 8],
+            ['Nature Staff', 'Great Nature Staff', 2, '4-Planks', 20, '1-Cloth', 12],
+            ['Nature Staff', 'Wild Staff', 2, '4-Planks', 20, '1-Cloth', 12]
+        ]
+    ],
+    [ # 3-近戰武器
+        [
+            ['Axe', 'Battleaxe', 2, '4-Planks', 8, '3-MetalBar', 16],
+            ['Axe', 'Greataxe', 2, '4-Planks', 12, '3-MetalBar', 20],
+            ['Axe', 'Halberd', 2, '4-Planks', 20, '3-MetalBar', 12]
+        ],
+        [
+            ['Dagger', 'Dagger', 2, '3-MetalBar', 12, '2-Leather', 12],
+            ['Dagger', 'Dagger Pair', 2, '3-MetalBar', 16, '2-Leather', 16],
+            ['Dagger', 'Claws', 2, '3-MetalBar', 12, '2-Leather', 20]
+        ],
+        [
+            ['Hammer', 'Hammer', 1, '3-MetalBar', 24],
+            ['Hammer', 'Polehammer', 2, '3-MetalBar', 20, '1-Cloth', 12],
+            ['Hammer', 'Great Hammer', 2, '3-MetalBar', 20, '1-Cloth', 12]
+        ],
+        [
+            ['WarGloves', 'Brawler Gloves', 2, '3-MetalBar', 12, '2-Leather', 20],
+            ['WarGloves', 'Battle Bracers', 2, '3-MetalBar', 12, '2-Leather', 20],
+            ['WarGloves', 'Spiked Gauntlets', 2, '3-MetalBar', 12, '2-Leather', 20]
+        ],
+        [
+            ['Mace', 'Mace', 2, '3-MetalBar', 16, '1-Cloth', 8],
+            ['Mace', 'Heavy Mace', 2, '3-MetalBar', 20, '1-Cloth', 12],
+            ['Mace', 'Morning Star', 2, '3-MetalBar', 20, '1-Cloth', 12]
+        ],
+        [
+            ['Quarterstaff', 'Quarterstaff', 2, '3-MetalBar', 12, '2-Leather', 20],
+            ['Quarterstaff', 'Iron-clad Staff', 2, '3-MetalBar', 12, '2-Leather', 20],
+            ['Quarterstaff', 'Double Bladed Staff', 2, '3-MetalBar', 12, '2-Leather', 20]
+        ],
+        [
+            ['Spear', 'Spear', 2, '4-Planks', 16, '3-MetalBar', 8],
+            ['Spear', 'Pike', 2, '4-Planks', 20, '3-MetalBar', 12],
+            ['Spear', 'Glaive', 2, '4-Planks', 12, '3-MetalBar', 20]
+        ],
+        [
+            ['Sword','Broadsword', 2, '3-MetalBar', 16, '2-Leather', 8],
+            ['Sword','Claymore', 2, '3-MetalBar', 20, '2-Leather', 12],
+            ['Sword','Dual Swords', 2, '3-MetalBar', 20, '2-Leather', 12]
+        ]
+    ],
+    [ # 4-遠程武器
+        [
+            ['Bow', 'Bow', 1, '4-Planks', 32],
+            ['Bow', 'Warbow', 1, '4-Planks', 32],
+            ['Bow', 'Longbow', 1, '4-Planks', 32]
+        ],
+        [
+            ['Crossbow', 'Crossbow', 2, '4-Planks', 20, '3-MetalBar', 12],
+            ['Crossbow', 'Heavy Crossbow', 2, '4-Planks', 20, '3-MetalBar', 12],
+            ['Crossbow', 'Light Crossbow', 2, '4-Planks', 16, '3-MetalBar', 8]
+        ]
+    ]
 ]

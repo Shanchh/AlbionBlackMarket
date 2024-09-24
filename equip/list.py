@@ -212,3 +212,17 @@ EquipCraftList = [
         ]
     ]
 ]
+BlackMarket_ItemTierList = [
+    ['Expert',0,5],
+    ['Expert',1,5],
+    ['Expert',2,5],
+    ['Master',0,6],
+    ['Master',1,6],
+    ['Master',2,6],
+    ['Grandmaster',0,7],
+    ['Grandmaster',1,7],
+    ['Grandmaster',2,7],
+    ['Elder',0,8],
+    ['Elder',1,8],
+    ['Elder',2,8]
+]

@@ -131,7 +131,8 @@ def w_corrections(check_v):
     corrections = {
 
         "Masfer": "Master",
-
+        "€xpert": "Expert",
+        "Hunfer": "Hunter"
     }
     
     # 遍歷字典 `corrections` 中的每一個錯誤(wrong)與對應的正確(correct)值
@@ -148,4 +149,4 @@ def w_corrections(check_v):
     # 回傳 (無須修正/修正完) 結果
     return output_v
 
-reading_resource()
+# reading_resource()

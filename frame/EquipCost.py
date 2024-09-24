@@ -1,8 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
-from equip.list import ECList_First_options, ECList_Second_options, EquipCraftList
+from equip.list import ECList_First_options, ECList_Second_options, EquipCraftList, BlackMarket_ItemTierList
 from data_processing import resource_price_search
 import math
+from config import connection
+import datetime
 
 class EquipCost:
     def __init__(self, notebook):
@@ -55,7 +57,20 @@ class EquipCost:
             if index == 0:
                 self.Cost_Treeview.column(col, width=150, anchor='center')
             else:
-                self.Cost_Treeview.column(col, width=100, anchor='center')
+                self.Cost_Treeview.column(col, width=70, anchor='center')
+
+        # ----------------------------------------------------------------------------------------- #
+
+        BlackMarket_Label = tk.Label(self.EquipCost, text="黑市損益表", bg="#d8bfd8")
+        BlackMarket_Label.place(x=5, y=148)
+
+        BlackMarket_Treeview_columns = (["裝備名稱", 150], ["階級附魔", 66], ["損益率", 80], ["損益", 100], ["成本", 100], ["黑市價格", 100], ["四周均價", 100], ["市場稅金",80], ["資料時間", 150],)
+        self.BlackMarket_Treeview = ttk.Treeview(self.EquipCost, columns=("裝備名稱", "階級附魔", "損益率", "損益", "成本", "黑市價格", "四周均價", "市場稅金", "資料時間"), show="headings", selectmode="none")
+        self.BlackMarket_Treeview.place(x=5, y=178, height=500)
+
+        for tree_for in BlackMarket_Treeview_columns:
+            self.BlackMarket_Treeview.heading(tree_for[0], text=tree_for[0])
+            self.BlackMarket_Treeview.column(tree_for[0], width = tree_for[1], anchor='center')
 
     def update_second(self, event):
 
@@ -85,7 +100,11 @@ class EquipCost:
             total_list.append(itemcost_list)
         for row in total_list:
             self.Cost_Treeview.insert("", "end", values=row)
-            
+
+        # ----------------------------------------------------------------------------------------- #
+
+        self.EquipCost_totallist = total_list
+        self.blackmarket_all()
 
     def get_rangerosource_price(self, Category):
         result = resource_price_search(Category)
@@ -108,3 +127,57 @@ class EquipCost:
     def clear_costtreeview(self):
         for item in self.Cost_Treeview.get_children():
             self.Cost_Treeview.delete(item)
+
+        # ----------------------------------------------------------------------------------------- #
+
+    def blackmarket_all(self):
+        cursor = connection.cursor()
+        # values[0] 裝備名稱 | values[1] 5.0 ~ 8.2 裝備成本
+        values = self.name_number_cut(self.EquipCost_totallist)
+        self.clear_BlackMarket_Treeview()
+        bm_insert = []
+        for val1, val2 in zip(values[0], values[1]):
+            for index, i in enumerate(val2):
+                # val1 = 裝備名稱 | i = 裝備成本
+                query = """
+                SELECT *
+                FROM albionbm.blackmarketprice
+                WHERE ItemName = %s
+                AND Tier = %s
+                AND Enchantment = %s
+                ORDER BY Date DESC, Time DESC
+                LIMIT 1;
+                """
+                params = (val1, BlackMarket_ItemTierList[index][0], BlackMarket_ItemTierList[index][1])
+                cursor.execute(query, params)
+                result = cursor.fetchone()
+                # 測試輸出數據用
+                # print(result)
+                market_fee = math.ceil(result[6] * 0.065)
+                profit = result[6] - i - market_fee
+                profit_precent = str(round(profit / i * 100, 1)) + "%"
+                data_time = self.date_tran(result[1], result[2])
+                itemenc = str(BlackMarket_ItemTierList[index][2]) + "." + str(BlackMarket_ItemTierList[index][1])
+                bm_insert.append([val1, itemenc, profit_precent, profit, i, result[6], result[7], market_fee, data_time])
+        for row in bm_insert:
+            self.BlackMarket_Treeview.insert("", "end", values=row)
+
+    def name_number_cut(self, value):
+        names = []
+        numbers = []
+
+        for item in value:
+            names.append(item[0])  # 第一個元素是英文名稱
+            numbers.append(item[1:])  # 剩下的是數字
+        
+        return names, numbers
+
+    def date_tran(self, date, time):
+        date_time = datetime.datetime.combine(date, datetime.time())
+        final_time = date_time + time
+        formatted_time = final_time.strftime('%Y/%m/%d %H:%M')
+        return formatted_time
+    
+    def clear_BlackMarket_Treeview(self):
+        for item in self.BlackMarket_Treeview.get_children():
+            self.BlackMarket_Treeview.delete(item)

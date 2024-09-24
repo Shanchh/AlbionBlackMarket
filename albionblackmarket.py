@@ -27,7 +27,7 @@ def on_startup():
 # 創建主畫面
 root = tk.Tk()
 root.title("AlbionBlackMarket God")
-root.geometry("1366x768")
+root.geometry("1005x710")
 
 root.resizable(False, False)
 

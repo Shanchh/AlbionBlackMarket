@@ -62,7 +62,7 @@ def tidy_data(export):
     sname = split_first_space(export[0][1])
 
     # 將分割完的裝備名稱傳回 export 資料陣列
-    export[0][1] = sname[1]
+    export[0][1] = w_corrections(sname[1])
     # tier_name 易別字修正
     tier_name = w_corrections(sname[0])
     # 定義要輸入 export 陣列的 Tier 資料
@@ -124,15 +124,18 @@ def AP_trans(value):
         # 回傳 Value
         return int(value) 
 
-# 易錯字修正
 def w_corrections(check_v):
 
     # 易錯字辭典
     corrections = {
-
         "Masfer": "Master",
         "€xpert": "Expert",
-        "Hunfer": "Hunter"
+        "Hunfer": "Hunter",
+        "Baftle": "Battle",
+        "Batfle": "Battle",
+        "Baffle": "Battle",
+        "Grandmastfer": "Grandmaster",
+        "Grandmasfer": "Grandmaster"
     }
     
     # 遍歷字典 `corrections` 中的每一個錯誤(wrong)與對應的正確(correct)值
@@ -143,10 +146,13 @@ def w_corrections(check_v):
 
         # 如果 check_v 和 output_v 不相等
         if check_v != output_v:
-
             print(f"已自動將Tier[{wrong}]修正成[{correct}]")
+        
+        # 更新 check_v，讓後續的替換基於當前的結果進行
+        check_v = output_v
 
-    # 回傳 (無須修正/修正完) 結果
+    # 回傳修正後的結果
     return output_v
 
-# reading_resource()
+
+# print(w_corrections("Baffle Bracers"))

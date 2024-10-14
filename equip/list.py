@@ -1,9 +1,10 @@
-ECList_First_options = ["1-護甲", "2-魔法武器", "3-近戰武器", "4-遠程武器"]
+ECList_First_options = ["1-護甲", "2-魔法武器", "3-近戰武器", "4-遠程武器", "5-副手"]
 ECList_Second_options = [
-    ["1-布甲", "2-布帽", "3-布鞋", "4-皮甲", "5-皮帽", "6-皮鞋", "7-板甲頭盔", "8-板甲", "9-板甲長靴"],
+    ["1-布甲", "2-布帽", "3-布鞋", "4-皮甲", "5-皮帽", "6-皮鞋", "7-板甲", "8-板甲頭盔", "9-板甲長靴"],
     ["1-奧術法杖", "2-詛咒法杖", "3-火焰法杖", "4-天霜法杖", "5-神聖法杖", "6-自然法杖"],
     ["1-戰斧", "2-匕首", "3-鎚子", "4-戰鬥手套", "5-鎚杖", "6-鐵頭棒", "7-長矛", "8-劍"],
-    ["1-弓箭", "2-十字弓"]
+    ["1-弓箭", "2-十字弓"],
+    ["1-所有副手"]
 ]
 ECList_Third_options = [
     [
@@ -209,6 +210,13 @@ EquipCraftList = [
             ['Crossbow', 'Crossbow', 2, '4-Planks', 20, '3-MetalBar', 12],
             ['Crossbow', 'Heavy Crossbow', 2, '4-Planks', 20, '3-MetalBar', 12],
             ['Crossbow', 'Light Crossbow', 2, '4-Planks', 16, '3-MetalBar', 8]
+        ]
+    ],
+    [
+        [
+            ['Off-Hand', 'Shield', 2, '4-Planks', 4, '3-MetalBar', 4],
+            ['Off-Hand', 'Tome of Spells', 2, '1-Cloth', 4, '2-Leather', 4],
+            ['Off-Hand', 'Torch', 2, '4-Planks', 4, '1-Cloth', 4]
         ]
     ]
 ]
